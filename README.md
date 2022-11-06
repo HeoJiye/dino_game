@@ -28,3 +28,4 @@
 5. [dino game 완성](markdown/STEP05.md)
     5.1 timer 추가
     5.2 game pause/resume 추가
+    5.3 효과음 적용
