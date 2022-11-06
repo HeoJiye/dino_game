@@ -6,4 +6,4 @@
 
 local composer = require "composer"
 
-composer.gotoScene("Scene.start")
+composer.gotoScene("Scene.game")
