@@ -13,7 +13,7 @@ function scene:create( event )
 
 	-- STEP 01. Scene.game BG & UI
 
-	-- 1. BG
+	-- 2. BG
 	local bgGroup = display.newGroup();
 	local background = display.newRect(bgGroup, display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight)
 	
@@ -25,7 +25,7 @@ function scene:create( event )
 
 	sceneGroup:insert(bgGroup)
 
-	-- 2. UI
+	-- 3. UI
 	local UIGroup = display.newGroup();
 
 	local playUI = {}
@@ -46,7 +46,7 @@ function scene:create( event )
 
 	sceneGroup:insert(UIGroup)
 
-	-- 2-1 UI event
+	-- 3-1 UI event
 	local function playPause( event )
 		playUI[0].alpha = 0
 		playUI[1].alpha = 1
@@ -72,6 +72,7 @@ function scene:create( event )
 	end
 	bgmUI[0]:addEventListener("tap", bgmPause)
 	bgmUI[1]:addEventListener("tap", bgmResume)
+
 
 end
 
