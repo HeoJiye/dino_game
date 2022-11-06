@@ -1,26 +1,35 @@
-## 공룡 생성하기
+## 공룡
 
 공룡을 넣을 껀데 공룡은 너무 복잡하니까 외부 모듈로 넣어보겠어요~
 
-1. 공룡 생성하기 (module.dino, Scene.game)
+1. 공룡 생성하기 (module.dinoModule, Scene.game)
     ![img](../Image/step03-1.jpg)
     ```lua
-    local imgSheet = graphics.newImageSheet( "Content/Playerd.png", { width = 214, height = 217, numFrames = 6 })
-    local sepuencesData = {
-        { name = "idle",	start = 1, count = 1 },
-        { name = "run",  	start = 1, count = 3, time = 400 },
-        { name = "jump", 	start = 4, count = 1 },
-        { name = "silde", 	start = 5, count = 1 },
-        { name = "collide", start = 6, count = 1 }
+    local dinoModlue = {}
+
+    function dinoModule.new() {
+        local imgSheet = graphics.newImageSheet( "Content/Playerd.png", { width = 214, height = 217, numFrames = 6 })
+        local sepuencesData = {
+            { name = "idle",	start = 1, count = 1 },
+            { name = "run",  	start = 1, count = 3, time = 400 },
+            { name = "jump", 	start = 4, count = 1 },
+            { name = "silde", 	start = 5, count = 1 },
+            { name = "collide", start = 6, count = 1 }
+        }
+
+        local dino = display.newSprite(imgSheet, sepuencesData)
+
+        return dino
     }
 
-    local dino = display.newSprite(imgSheet, sepuencesData)
-
-    return dino
+    return dinoModule
     ```
 
     ```lua
-    local dino = require( "module.dino" )
+    local dinoModule = require( "module.dinoModule" )
+    ```
+    ```lua
+	local dino = dinoModlue.New()
 	dino.x, dino.y = display.contentWidth*0.2, display.contentCenterY
 
     sceneGroup:insert(dino)
@@ -164,8 +173,11 @@
         dino.isJump = false
         
         physics.addBody(dino, "static", { outline = graphics.newOutline(2, imgSheet, 1) })
-        physics.start()
     end
+    ```
+    ```lua
+    physics.start()
+    physics.setDrawMode('hybrid')
     ```
     ![img](../Image/step03-6.jpg)
     ![img](../Image/step03-6-1.jpg)
@@ -180,9 +192,8 @@
         dino:animation('run')
         dino.isJump = false
  
-        physics.start()
         physics.addBody(dino, "static", { outline = dinoOutline.idle })
-        physics.setDrawMode('hybrid')
+        
     end
     ```
 
